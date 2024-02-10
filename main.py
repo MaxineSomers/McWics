@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
+from classes import UserInfo
+
+global currentUser
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(
@@ -56,10 +59,24 @@ def addexpense(): #get all the data from the add form
     return redirect("/")
 
 
-@app.route('/user_info')
 @app.route('/signup')
 def user_info():
     return render_template('user.html') 
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Create a new instance of the User class
+        new_user = UserInfo(name, email, password)
+        print("New User:", new_user.email)
+    
+
+    return redirect("/")
+
 
 
 @app.route('/Daily_Expense')
