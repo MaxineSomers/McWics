@@ -6,31 +6,43 @@
     <title>Flask UI Example</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Custom CSS */
         .form-container {
           max-width: 500px;
           margin: 50px auto;
         }
+
+        .title {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+        }
+
     </style>
 
 </head>
 <body>
-    <h1>Expense Tracking App</h1>
-    <p>Add expenses.</p>
+
+
+<div class="container">
+    <h1 class="title"> Expense Tracking App</h1>
+    <p class="subtitle">Add expenses!</p>
+</div>
+
 
     <form action="/addexpense" method="POST">
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="date">Date</label>
-                <input type="date" name="date" id="date">
+                <input class ="form-control" type="date" name="date" id="date">
             </div>
-
         </div>
 
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="">Expense Name</label>
-                <input type="text" name="expensename" id="expensename">
+                <input class ="form-control" type="text" name="expensename" id="expensename">
             </div>
 
         </div>
@@ -38,7 +50,7 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="">Amount</label>
-                <input type="text" name="amount" id="amount">
+                <input class ="form-control" type="text" name="amount" id="amount">
             </div>
 
         </div>
@@ -46,7 +58,7 @@
         <div class="form-group">
             <div class="col-sm-12">
                 <label for="">Category</label>
-                <select name="category" id="category">
+                <select class ="form-control" name="category" id="category">
 
                     <option value="other">Other</option>
                     <option value="rent">Rent</option>
@@ -56,7 +68,11 @@
             </div>
 
         </div>
-        <input type="submit" value="add" id="">
+
+
+        <div class="col-sm-12">
+            <input class="btn btn-primary" type="submit" value="add" id="">
+        </div>
     </form>
 
 </body>
