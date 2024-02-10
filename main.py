@@ -110,7 +110,7 @@ def addexpense(): #get all the data from the add form
     return redirect("/Daily_Expense")
 
 
-
+@app.route('/homePage')
 def homePage():
     return render_template("homePage.html")
 
