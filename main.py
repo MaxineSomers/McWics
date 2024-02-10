@@ -1,9 +1,26 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+import os
+
+project_dir = os.path.dirname(os.path.abspath(__file__))
+database_file = "sqlite:///{}".format(
+    os.path.join(project_dir, "expensesdatabase.db")
+)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'  # SQLite database URI
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'  # SQLite database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = database_file
 db = SQLAlchemy(app)
+
+#model for expense
+class Expense(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    expensename = db.Column(db.String(100), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(100), nullable=False)
+    #then i uh initialize the database in shell???
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,9 +45,14 @@ def addexpense(): #get all the data from the add form
     amount = request.form['amount']
     category = request.form['category']
 
-    #add the values to database table
-    #print for now
+    #print for now to confirm we get the right data
     print(date+' '+expensename+' '+amount+' '+ category)
+
+    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
+    #add the expense to the database
+    db.session.add(expense)
+    db.session.commit() #changes are committed to db
+
     return redirect("/")
 
 
