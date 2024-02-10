@@ -57,10 +57,9 @@ def addexpense(): #get all the data from the add form
 
 
 @app.route('/user_info')
+@app.route('/signup')
 def user_info():
-    return render_template('user.html')
-
-
+    return render_template('user.html') 
 
 
 @app.route('/Daily_Expense')
