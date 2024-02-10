@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
+from classes import UserInfo
+
+global currentUser
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(
@@ -63,30 +66,48 @@ def expenses():
     expenses = Expense.query.all()
     return render_template('expenses.html', expenses=expenses)
 
-@app.route('/user_info')
 @app.route('/signup')
 def user_info():
     return render_template('user.html') 
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Create a new instance of the User class
+        new_user = UserInfo(name, email, password)
+        print("New User:", new_user.email)
+    
+
+    return redirect("/")
+
+@app.route('/BudgetPlan')
+def bp():
+    return render_template('BudgetPlan.html') 
 
 
 @app.route('/Daily_Expense')
 def min_page():
     return render_template('min_page.html')
 
+def addexpense(): #get all the data from the add form
+    date = request.form['Date']
+    expensename = request.form['Expense Name']
+    amount = request.form['Amount']
+    category = request.form['Category']
 
-def add_daily_expense():
-    amount = float(request.form['amount'])
-    category = request.form['categegory']
-    if category == "food":
-        User.daily_food = amount
-    elif category == "transportation":
-        User.daily_transportation = amount
-    elif category == "entertainment":
-        User.daily_entertainment = amount
+    #print for now to confirm we get the right data
+    print(date+' '+expensename+' '+amount+' '+ category)
 
-    db.session.commit()
+    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
+    #add the expense to the database
+    db.session.add(expense)
+    db.session.commit() #changes are committed to db
 
-    return "Expense added successfully! "
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)
