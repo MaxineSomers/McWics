@@ -59,8 +59,6 @@ def addexpense(): #get all the data from the add form
     db.session.commit() #changes are committed to db
 
     return redirect("/")
-    #return  
-    
 
 @app.route('/expenses')
 #get all expenses from the database
@@ -86,6 +84,9 @@ def submit():
 
     return redirect("/")
 
+@app.route('/BudgetPlan')
+def bp():
+    return render_template('BudgetPlan.html') 
 
 
 @app.route('/Daily_Expense')
