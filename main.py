@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
+from classes import UserInfo
+
+global currentUser
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(
@@ -11,6 +14,18 @@ app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'  # SQLite database URI
 app.config['SQLALCHEMY_DATABASE_URI'] = database_file
 db = SQLAlchemy(app)
+
+# Model for expense
+class Expense(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    expensename = db.Column(db.String(100), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(100), nullable=False)
+
+# Create tables within the context of the application
+with app.app_context():
+    db.create_all()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -45,11 +60,30 @@ def addexpense(): #get all the data from the add form
 
     return redirect("/")
 
+@app.route('/expenses')
+#get all expenses from the database
+def expenses():
+    expenses = Expense.query.all()
+    return render_template('expenses.html', expenses=expenses)
 
-@app.route('/user_info')
 @app.route('/signup')
 def user_info():
     return render_template('user.html') 
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Create a new instance of the User class
+        new_user = UserInfo(name, email, password)
+        print("New User:", new_user.email)
+    
+
+    return redirect("/")
+
 
 
 @app.route('/Daily_Expense')
