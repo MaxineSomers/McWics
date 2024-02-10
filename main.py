@@ -90,20 +90,21 @@ def submit():
 def min_page():
     return render_template('min_page.html')
 
+def addexpense(): #get all the data from the add form
+    date = request.form['Date']
+    expensename = request.form['Expense Name']
+    amount = request.form['Amount']
+    category = request.form['Category']
 
-def add_daily_expense():
-    amount = float(request.form['amount'])
-    category = request.form['categegory']
-    if category == "food":
-        User.daily_food = amount
-    elif category == "transportation":
-        User.daily_transportation = amount
-    elif category == "entertainment":
-        User.daily_entertainment = amount
+    #print for now to confirm we get the right data
+    print(date+' '+expensename+' '+amount+' '+ category)
 
-    db.session.commit()
+    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
+    #add the expense to the database
+    db.session.add(expense)
+    db.session.commit() #changes are committed to db
 
-    return "Expense added successfully! "
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)
