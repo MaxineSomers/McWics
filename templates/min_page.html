@@ -3,9 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Daily Expense</title>
 </head>
 <body>
-    <p>hello</p>
+    <h1>Daily Expense Tracker</h1>
+    
+    <!-- Form for inputting daily expenses -->
+    <form>
+        <label for="amount">Enter Daily Expense:</label>
+        <input type="number" id="amount" name="amount">
+        
+        <label for="category">Select Category:</label>
+        <select id="category" name="category">
+            <option value="food">Food</option>
+            <option value="transportation">Transportation</option>
+            <option value="utilities">Utilities</option>
+            <option value="entertainment">Entertainment</option>
+            <!-- Add more options as needed -->
+        </select>
+        
+        <button type="submit">Add Expense</button>
+    </form>
 </body>
 </html>
