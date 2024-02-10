@@ -1,7 +1,7 @@
+import uuid
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
-from classes import UserInfo
 
 global currentUser
 
@@ -23,21 +23,30 @@ class Expense(db.Model):
     amount = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(100), nullable=False)
 
+
+class User(db.Model):
+    name = db.Column(db.String(100), nullable=True)
+    id = db.Column(db.String(256), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    budget = db.Column(db.Integer, primary_key=True)
+
+    
 # Create tables within the context of the application
 with app.app_context():
     db.create_all()
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    phone = db.Column(db.String(20))
+# class User(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String(100), nullable=False)
+#     email = db.Column(db.String(100), unique=True, nullable=False)
+#     phone = db.Column(db.String(20))
 
-    #### Daily_Page
-    daily_food = db.Column(db.Float)
-    daily_transportation = db.Column(db.Float)
-    daily_utilities = db.Column(db.Float)
-    daily_entertainment = db.Column(db.Float)
+#     #### Daily_Page
+#     daily_food = db.Column(db.Float)
+#     daily_transportation = db.Column(db.Float)
+#     daily_utilities = db.Column(db.Float)
+#     daily_entertainment = db.Column(db.Float)
 
 @app.route('/')
 def index():
@@ -61,7 +70,7 @@ def addexpense(): #get all the data from the add form
     return redirect("/")
 
 @app.route('/expenses')
-#get all expenses from the database
+#get all expenses fr    om the database
 def expenses():
     expenses = Expense.query.all()
     return render_template('expenses.html', expenses=expenses)
@@ -70,20 +79,28 @@ def expenses():
 def user_info():
     return render_template('user.html') 
 
-@app.route('/submit', methods=['POST'])
-def submit():
+@app.route('/createUser', methods=['POST'])
+def createUser():
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
 
         # Create a new instance of the User class
-        new_user = UserInfo(name, email, password)
-        print("New User:", new_user.email)
-    
+        new_user = User(name=name,id = str(uuid.uuid4()), email=email, password=password)
+        global current_user_id
 
-    return redirect("/")
+        current_user_id = new_user.id
 
+        db.session.add(new_user)
+        db.session.commit() 
+
+    return redirect("/users")
+
+@app.route('/users')
+def users():
+    users = User.query.all()
+    return render_template('users.html', users=users)
 
 
 @app.route('/Daily_Expense')
