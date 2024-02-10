@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -20,6 +20,19 @@ class User(db.Model):
 @app.route('/')
 def index():
     return render_template('add.html')
+
+@app.route('/addexpense', methods=['POST'])
+def addexpense(): #get all the data from the add form
+    date = request.form['date']
+    expensename = request.form['expensename']
+    amount = request.form['amount']
+    category = request.form['category']
+
+    #add the values to database table
+    #print for now
+    print(date+' '+expensename+' '+amount+' '+ category)
+    return redirect("/")
+
 
 @app.route('/user_info')
 def user_info():
