@@ -27,6 +27,7 @@ class User(db.Model):
     def index():
         return render_template('index.html')
 
+   
     def add_daily_expense():
         amount = float(request.form['amount'])
         category = request.form['categegory']
