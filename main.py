@@ -130,5 +130,19 @@ def addexpense(): #get all the data from the add form
 def homePage():
     return render_template("homePage.html")
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    expense = Expense.query.filter_by(id=id).first()
+    db.session.delete(expense)
+    db.session.commit()
+    return redirect('/expenses')
+
+@app.route('/update/<int:id>')
+def update(id):
+    expense = Expense.query.filter_by(id=id).first()
+    db.session.delete(expense)
+    db.session.commit()
+    return render_template("updateexpense.html", expense=expense)
+
 if __name__ == '__main__':
     app.run(debug=True)
