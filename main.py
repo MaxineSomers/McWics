@@ -84,6 +84,9 @@ def submit():
 
     return redirect("/")
 
+@app.route('/BudgetPlan')
+def bp():
+    return render_template('BudgetPlan.html') 
 
 
 @app.route('/Daily_Expense')
