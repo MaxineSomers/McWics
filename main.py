@@ -12,6 +12,18 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = database_file
 db = SQLAlchemy(app)
 
+# Model for expense
+class Expense(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String(100), nullable=False)
+    expensename = db.Column(db.String(100), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(100), nullable=False)
+
+# Create tables within the context of the application
+with app.app_context():
+    db.create_all()
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
