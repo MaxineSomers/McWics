@@ -21,11 +21,9 @@ class User(db.Model):
 def index():
     return render_template('add.html')
 
-@app.route('/user_info')
+@app.route('/signup')
 def user_info():
-    return render_template('user.html')
-
-
+    return render_template('user.html') 
 
 
 @app.route('/Daily_Expense')
