@@ -1,10 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+import os
+
+project_dir = os.path.dirname(os.path.abspath(__file__))
+database_file = "sqlite:///{}".format(
+    os.path.join(project_dir, "expensesdatabase.db")
+)
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'  # SQLite database URI
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'  # SQLite database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = database_file
 db = SQLAlchemy(app)
-
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -22,11 +28,28 @@ class User(db.Model):
 def index():
     return render_template('add.html')
 
+@app.route('/addexpense', methods=['POST'])
+def addexpense(): #get all the data from the add form
+    date = request.form['date']
+    expensename = request.form['expensename']
+    amount = request.form['amount']
+    category = request.form['category']
+
+    #print for now to confirm we get the right data
+    print(date+' '+expensename+' '+amount+' '+ category)
+
+    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
+    #add the expense to the database
+    db.session.add(expense)
+    db.session.commit() #changes are committed to db
+
+    return redirect("/")
+
+
 @app.route('/user_info')
+@app.route('/signup')
 def user_info():
-    return render_template('user.html')
-
-
+    return render_template('user.html') 
 
 
 @app.route('/Daily_Expense')
