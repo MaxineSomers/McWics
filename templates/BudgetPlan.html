@@ -44,28 +44,36 @@
 </head>
 <body>
     <h1>Plan according to your Budget</h1>
-    
-    <form id="expenseForm" action="/BudgetPlan" method="post">
-    <label for="budget">Enter Your Budget:</label>
-    <input type="number" id="budget" name="budget" required>
-    
-    <label for="spendingAreas">Select Spending Areas (comma-separated):</label>
-    <input type="text" id="spendingAreas" name="spendingAreas" required>
-    
-    <!-- Add a submit button to submit the form -->
-    <button type="submit">Submit</button>
-</form>
 
-<!-- Display area for expense suggestions -->
-<div id="suggestion"></div>
-<!-- Your Possible Plan Section -->
-<div id="possiblePlan">
-    <h2>Your Possible Plan</h2>
-    <p>Your Budget: <span id="displayBudget"></span></p>
-    <p>Your Spending Areas: <span id="displaySpendingAreas"></span></p>
-    <p>Consider the following plan based on your budget and spending areas:</p>
-    <!-- Add your plan suggestions here -->
-</div>
+    <form id="expenseForm" action="/BudgetPlan" method="post">
+        <div>
+            <label for="budget">Enter Your Budget:</label>
+            <input type="number" id="budget" name="budget" required>
+        </div>
+        
+        <div>
+            <label for="spendingAreas">Select Spending Areas (comma-separated):</label>
+            <input type="text" id="spendingAreas" name="spendingAreas" required>
+        </div>
+        
+        <!-- Add a submit button to submit the form -->
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    
+    <!-- Display area for expense suggestions -->
+    <div id="suggestion"></div>
+    
+    <!-- Your Possible Plan Section -->
+    <div id="possiblePlan">
+        <h2>Your Possible Plan</h2>
+        <p>Your Budget: <span id="displayBudget"></span></p>
+        <p>Your Spending Areas: <span id="displaySpendingAreas"></span></p>
+        <p>Consider the following plan based on your budget and spending areas:</p>
+        <!-- Add your plan suggestions here -->
+    </div>
+    
 <script>
     $(document).ready(function () {
         // Handle form submission
