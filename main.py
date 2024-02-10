@@ -59,6 +59,8 @@ def addexpense(): #get all the data from the add form
     db.session.commit() #changes are committed to db
 
     return redirect("/")
+    #return  
+    
 
 @app.route('/expenses')
 #get all expenses from the database
@@ -91,10 +93,10 @@ def min_page():
     return render_template('min_page.html')
 
 def addexpense(): #get all the data from the add form
-    date = request.form['Date']
-    expensename = request.form['Expense Name']
-    amount = request.form['Amount']
-    category = request.form['Category']
+    date = request.form['date']
+    expensename = request.form['expensename']
+    amount = request.form['amount']
+    category = request.form['category']
 
     #print for now to confirm we get the right data
     print(date+' '+expensename+' '+amount+' '+ category)
@@ -104,7 +106,12 @@ def addexpense(): #get all the data from the add form
     db.session.add(expense)
     db.session.commit() #changes are committed to db
 
-    return redirect("/")
+    return redirect("/Daily_Expense")
+
+
+
+def homePage():
+    return render_template("homePage.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
