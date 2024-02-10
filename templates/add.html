@@ -4,21 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flask UI Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS */
+        .form-container {
+          max-width: 500px;
+          margin: 50px auto;
+        }
+    </style>
 
 </head>
 <body>
-    <h1>Welcome to my Flask App!</h1>
-    <p>This is a simple Flask web application.</p>
+    <h1>Expense Tracking App</h1>
+    <p>Add expenses.</p>
 
     <form action="/addexpense" method="POST">
-        <input type="date" name="date" id="date">
-        <input type="text" name="expense" id="expense">
-        <input type="text" name="amount" id="amount">
-        <select name="category" id="category">
-            <option value="rent">Rent</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="other">Other</option>
-        </select>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date">
+        </div>
+
+        <div class="form-group">
+            <label for="">Expense Name</label>
+            <input type="text" name="expensename" id="expensename">
+        </div>
+
+        <div class="form-group">
+            <label for="">Amount</label>
+            <input type="text" name="amount" id="amount">
+        </div>
+
+        <div class="form-group">
+            <label for="">Category</label>
+            <select name="category" id="category">
+                <option value="rent">Rent</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
         <input type="submit" value="add" id="">
     </form>
 
