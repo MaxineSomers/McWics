@@ -97,6 +97,9 @@ def createUser():
 
     return redirect("/users")
 
+@app.route('/BudgetPlan')
+def bp():
+    return render_template('BudgetPlan.html') 
 @app.route('/users')
 def users():
     users = User.query.all()
@@ -107,20 +110,26 @@ def users():
 def min_page():
     return render_template('min_page.html')
 
+def addexpense(): #get all the data from the add form
+    date = request.form['date']
+    expensename = request.form['expensename']
+    amount = request.form['amount']
+    category = request.form['category']
 
-def add_daily_expense():
-    amount = float(request.form['amount'])
-    category = request.form['categegory']
-    if category == "food":
-        User.daily_food = amount
-    elif category == "transportation":
-        User.daily_transportation = amount
-    elif category == "entertainment":
-        User.daily_entertainment = amount
+    #print for now to confirm we get the right data
+    print(date+' '+expensename+' '+amount+' '+ category)
 
-    db.session.commit()
+    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
+    #add the expense to the database
+    db.session.add(expense)
+    db.session.commit() #changes are committed to db
 
-    return "Expense added successfully! "
+    return redirect("/Daily_Expense")
+
+
+
+def homePage():
+    return render_template("homePage.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
