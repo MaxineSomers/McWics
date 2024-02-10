@@ -131,5 +131,10 @@ def addexpense(): #get all the data from the add form
 def homePage():
     return render_template("homePage.html")
 
+@app.route('/stockChecking')
+def stock():
+    return render_template("stockChecking.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
