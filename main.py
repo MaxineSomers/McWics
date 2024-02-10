@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-global currentUser
+current_user_id = ""
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(
@@ -21,6 +21,7 @@ class Expense(db.Model):
     expensename = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(100), nullable=False)
+    userId= db.Column(db.String(100), nullable=False)
 
 
 class User(db.Model):
@@ -35,21 +36,12 @@ class User(db.Model):
 with app.app_context():
     db.create_all()
 
-# class User(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(100), nullable=False)
-#     email = db.Column(db.String(100), unique=True, nullable=False)
-#     phone = db.Column(db.String(20))
-
-#     #### Daily_Page
-#     daily_food = db.Column(db.Float)
-#     daily_transportation = db.Column(db.Float)
-#     daily_utilities = db.Column(db.Float)
-#     daily_entertainment = db.Column(db.Float)
-
 @app.route('/')
 def index():
-    return render_template('add.html')
+    if current_user_id=="":
+        return redirect("/signup")
+    else:
+        return render_template('homePage.html')
 
 @app.route('/addexpense', methods=['POST'])
 def addexpense(): #get all the data from the add form
@@ -61,7 +53,7 @@ def addexpense(): #get all the data from the add form
     #print for now to confirm we get the right data
     print(date+' '+expensename+' '+amount+' '+ category)
 
-    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
+    expense = Expense(date=date, expensename=expensename, amount=amount, category=category, userId = current_user_id)
     #add the expense to the database
     db.session.add(expense)
     db.session.commit() #changes are committed to db
@@ -109,21 +101,21 @@ def users():
 def min_page():
     return render_template('min_page.html')
 
-def addexpense(): #get all the data from the add form
-    date = request.form['date']
-    expensename = request.form['expensename']
-    amount = request.form['amount']
-    category = request.form['category']
+# def addexpense(): #get all the data from the add form
+#     date = request.form['date']
+#     expensename = request.form['expensename']
+#     amount = request.form['amount']
+#     category = request.form['category']
 
-    #print for now to confirm we get the right data
-    print(date+' '+expensename+' '+amount+' '+ category)
+#     #print for now to confirm we get the right data
+#     print(date+' '+expensename+' '+amount+' '+ category)
 
-    expense = Expense(date=date, expensename=expensename, amount=amount, category=category)
-    #add the expense to the database
-    db.session.add(expense)
-    db.session.commit() #changes are committed to db
+#     expense = Expense(date=date, expensename=expensename, amount=amount, category=category, userId = current_user_id)
+#     #add the expense to the database
+#     db.session.add(expense)
+#     db.session.commit() #changes are committed to db
 
-    return redirect("/Daily_Expense")
+#     return redirect("/Daily_Expense")
 
 
 @app.route('/homePage')
@@ -143,6 +135,11 @@ def update(id):
     db.session.delete(expense)
     db.session.commit()
     return render_template("updateexpense.html", expense=expense)
+
+@app.route('/stockChecking')
+def stock():
+    return render_template("stockChecking.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
