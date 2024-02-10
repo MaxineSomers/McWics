@@ -8,5 +8,17 @@
 <body>
     <h1>Welcome to my Flask App!</h1>
     <p>This is a simple Flask web application.</p>
+
+    <form action="/addexpense" method="POST">
+        <input type="date" name="date" id="date">
+        <input type="text" name="expense" id="expense">
+        <input type="text" name="amount" id="amount">
+        <select name="category" id="category">
+            <option value="rent">Rent</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="other">Other</option>
+        </select>
+        <input type="submit" value="add" id="">
+    </form>
 </body>
 </html>
