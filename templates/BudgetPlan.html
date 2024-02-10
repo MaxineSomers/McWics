@@ -81,22 +81,18 @@
     <h1>Plan according to your Budget</h1>
 
 <form id="expenseForm" action="/BudgetPlan" method="post">
-    <div>
-        <label for="budget">Enter Your Budget:</label>
-    </div>
-    <div>
-        <input type="number" id="budget" name="budget" required>
+    <div style="display: block; margin-bottom: 10px;">
+        <label for="budget" style="display: block;">Enter Your Budget:</label>
+        <input type="number" id="budget" name="budget" required style="width: 100%;">
     </div>
     
-    <div>
-        <label for="spendingAreas">Select Spending Areas (comma-separated):</label>
-    </div>
-    <div>
-        <input type="text" id="spendingAreas" name="spendingAreas" required>
+    <div style="display: block; margin-bottom: 10px;">
+        <label for="spendingAreas" style="display: block;">Select Spending Areas (comma-separated):</label>
+        <input type="text" id="spendingAreas" name="spendingAreas" required style="width: 100%;">
     </div>
     
     <!-- Add a submit button to submit the form -->
-    <div>
+    <div style="display: block; margin-top: 10px;">
         <button type="submit">Submit</button>
     </div>
 </form>
@@ -112,36 +108,6 @@
     <p>Consider the following plan based on your budget and spending areas:</p>
     <!-- Add your plan suggestions here -->
 </div>
-    
-
-    <form id="expenseForm" action="/BudgetPlan" method="post">
-        <div>
-            <label for="budget">Enter Your Budget:</label>
-            <input type="number" id="budget" name="budget" required>
-        </div>
-        
-        <div>
-            <label for="spendingAreas">Select Spending Areas (comma-separated):</label>
-            <input type="text" id="spendingAreas" name="spendingAreas" required>
-        </div>
-        
-        <!-- Add a submit button to submit the form -->
-        <div>
-            <button type="submit">Submit</button>
-        </div>
-    </form>
-    
-    <!-- Display area for expense suggestions -->
-    <div id="suggestion"></div>
-    
-    <!-- Your Possible Plan Section -->
-    <div id="possiblePlan">
-        <h2>Your Possible Plan</h2>
-        <p>Your Budget: <span id="displayBudget"></span></p>
-        <p>Your Spending Areas: <span id="displaySpendingAreas"></span></p>
-        <p>Consider the following plan based on your budget and spending areas:</p>
-        <!-- Add your plan suggestions here -->
-    </div>
     
 <script>
     $(document).ready(function () {
