@@ -13,7 +13,7 @@ def user_info():
 
 
 
-@app.route('/Monica Page')
+@app.route('/Daily_Expense')
 def min_page():
     return render_template('min_page.html')
 
