@@ -4,13 +4,48 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
 
-{% for expense in expenses %}
-    {{ expense.date }} ->{{ expense.expensename }} ->{{ expense.amount }} ->{{ expense.category }}</br>
-{% endfor %}
+<div class="container">
+    <h1 class="title"> Expense Tracking App</h1>
+    <p class="subtitle">Here are your expenses!</p>
+</div>
+
+<div class="container">
+    {% for expense in expenses %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card shadow bg-blue rounded">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">{{ expense.expensename }}</div>
+                        <div class="col-md-12">{{ expense.amount }}</div>
+                        <div class="col-md-12">{{ expense.date }}</div>
+                        <div class="col-md-12">{{ expense.category }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
 
 
 <h1>Daily Expense Distribution</h1>
