@@ -15,15 +15,17 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = database_file
 db = SQLAlchemy(app)
 
-#model for expense
+# Model for expense
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String(100), nullable=False)
     expensename = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     category = db.Column(db.String(100), nullable=False)
-    #then i uh initialize the database in shell???
 
+# Create tables within the context of the application
+with app.app_context():
+    db.create_all()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -58,6 +60,11 @@ def addexpense(): #get all the data from the add form
 
     return redirect("/")
 
+@app.route('/expenses')
+#get all expenses from the database
+def expenses():
+    expenses = Expense.query.all()
+    return render_template('expenses.html', expenses=expenses)
 
 @app.route('/signup')
 def user_info():
@@ -100,4 +107,3 @@ def add_daily_expense():
 
 if __name__ == '__main__':
     app.run(debug=True)
-#### MIn peng
