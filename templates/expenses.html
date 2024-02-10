@@ -31,13 +31,23 @@
     {% for expense in expenses %}
     <div class="row">
         <div class="col-md-12">
-            <div class="card shadow bg-blue rounded">
+            <div class="card shadow mb-3 bg-blue rounded">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-12">{{ expense.expensename }}</div>
-                        <div class="col-md-12">{{ expense.amount }}</div>
-                        <div class="col-md-12">{{ expense.date }}</div>
-                        <div class="col-md-12">{{ expense.category }}</div>
+                        <div class="col-md-2" style="font-size: 20px; font-weight: bold;">{{ expense.expensename }}</div>
+                        <div class="col-md-2">{{ expense.amount }}</div>
+                        <div class="col-md-2">{{ expense.date }}</div>
+                        <div class="col-md-2">{{ expense.category }}</div>
+
+<!--                        edit button-->
+                        <div class="col-md-2">
+                            <a href="/edit/{{ expense.id }}" class="btn btn-primary">Edit</a>
+                        </div>
+
+<!--                        delete button-->
+                        <div class="col-md-2">
+                            <a href="/delete/{{ expense.id }}" class="btn btn-danger">Delete</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,6 +70,8 @@
         <!-- Data will be populated dynamically -->
     </tbody>
 </table>
+
+
 
 <!-- Pie chart canvas -->
 <canvas id="pie-chart" width="400" height="400"></canvas>
