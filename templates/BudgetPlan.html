@@ -6,23 +6,100 @@
     <title>Budget Plan</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+        }
+
+        body {
+        background-color: #d8bfd8; /* Hexadecimal color code for light purple */
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+        }
+
+        body {
+        background-color: #d8bfd8; /* Hexadecimal color code for light purple */
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
     <h1>Plan according to your Budget</h1>
+
+<form id="expenseForm" action="/BudgetPlan" method="post">
+    <div style="display: block; margin-bottom: 10px;">
+        <label for="budget" style="display: block;">Enter Your Budget:</label>
+        <input type="number" id="budget" name="budget" required style="width: 100%;">
+    </div>
     
-    <form id="expenseForm" action="/BudgetPlan" method="post">
-    <label for="budget">Enter Your Budget:</label>
-    <input type="number" id="budget" name="budget" required>
-    
-    <label for="spendingAreas">Select Spending Areas (comma-separated):</label>
-    <input type="text" id="spendingAreas" name="spendingAreas" required>
+    <div style="display: block; margin-bottom: 10px;">
+        <label for="spendingAreas" style="display: block;">Select Spending Areas (comma-separated):</label>
+        <input type="text" id="spendingAreas" name="spendingAreas" required style="width: 100%;">
+    </div>
     
     <!-- Add a submit button to submit the form -->
-    <button type="submit">Submit</button>
+    <div style="display: block; margin-top: 10px;">
+        <button type="submit">Submit</button>
+    </div>
 </form>
 
 <!-- Display area for expense suggestions -->
 <div id="suggestion"></div>
+
 <!-- Your Possible Plan Section -->
 <div id="possiblePlan">
     <h2>Your Possible Plan</h2>
@@ -31,6 +108,7 @@
     <p>Consider the following plan based on your budget and spending areas:</p>
     <!-- Add your plan suggestions here -->
 </div>
+    
 <script>
     $(document).ready(function () {
         // Handle form submission
