@@ -57,6 +57,11 @@ def addexpense(): #get all the data from the add form
 
     return redirect("/")
 
+@app.route('/expenses')
+#get all expenses from the database
+def expenses():
+    expenses = Expense.query.all()
+    return render_template('expenses.html', expenses=expenses)
 
 @app.route('/user_info')
 @app.route('/signup')
