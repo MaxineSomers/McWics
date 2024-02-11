@@ -21,9 +21,9 @@
         }
 
         body {
-        background-color: #d8bfd8; 
-        font-family: 'Courier New', Courier, monospace;
-    }
+            background-color: #d8bfd8; 
+            font-family: 'Courier New', Courier, monospace;
+        }
 
         table {
             border-collapse: collapse;
@@ -45,70 +45,64 @@
 <body>
     <h1>Plan according to your Budget</h1>
 
-<form id="expenseForm" action="/BudgetPlan" method="post">
-    <div style="display: block; margin-bottom: 10px;">
-        <label for="budget" style="display: block;">Enter Your Budget:</label>
-        <input type="number" id="budget" name="budget" required style="width: 100%;">
-    </div>
-    
-    <div style="display: block; margin-bottom: 10px;">
-        <label for="spendingAreas" style="display: block;">Select Spending Areas (comma-separated):</label>
-        <input type="text" id="spendingAreas" name="spendingAreas" required style="width: 100%;">
-    </div>
-    
-    <!-- Add a submit button to submit the form -->
-    <div style="display: block; margin-top: 10px;">
-        <button type="submit">Submit</button>
-    </div>
-</form>
+    <form id="expenseForm">
+        <div style="display: block; margin-bottom: 10px;">
+            <label for="budget" style="display: block;">Enter Your Budget:</label>
+            <input type="number" id="budget" name="budget" required style="width: 100%;">
+        </div>
 
-<!-- Display area for expense suggestions -->
-<div id="suggestion"></div>
+        <div style="display: block; margin-bottom: 10px;">
+            <label for="spendingAreas" style="display: block;">Select Spending Areas:</label>
+            <select id="spendingAreas" name="spendingAreas" required style="width: 100%;">
+                <option value="groceries">Groceries</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="utilities">Utilities</option>
+                <!-- Add more spending areas as needed -->
+            </select>
+        </div>
 
-<!-- Your Possible Plan Section -->
-<div id="possiblePlan">
-    <h2>Your Possible Plan</h2>
-    <p>Your Budget: <span id="displayBudget"></span></p>
-    <p>Your Spending Areas: <span id="displaySpendingAreas"></span></p>
-    <p>Consider the following plan based on your budget and spending areas:</p>
-    <!-- Add your plan suggestions here -->
-</div>
-    
-<script>
-    $(document).ready(function () {
-        // Handle form submission
-        $("#expenseForm").submit(function (event) {
-            event.preventDefault();
-    
+        <!-- Add a submit button to submit the form -->
+        <div style="display: block; margin-top: 10px;">
+            <button type="button" onclick="submitForm()">Submit</button>
+        </div>
+    </form>
+
+    <!-- Display area for expense suggestions -->
+    <div id="suggestion"></div>
+
+    <!-- Your Possible Plan Section -->
+    <div id="possiblePlan" style="display:none;">
+        <h2>Your Possible Plan</h2>
+        <p>Your Budget: <span id="displayBudget"></span></p>
+        <p>Your Spending Areas: <span id="displaySpendingAreas"></span></p>
+        <p>Consider the following plan based on your budget and spending areas:</p>
+        <!-- Add your plan suggestions here -->
+    </div>
+
+    <script>
+        function submitForm() {
             // Get user input
             var budget = $("#budget").val();
             var spendingAreas = $("#spendingAreas").val();
-    
-            // Make an AJAX request to your server (replace 'YOUR_SERVER_ENDPOINT' with the actual server endpoint)
-            $.ajax({
-                url: "YOUR_SERVER_ENDPOINT",
-                method: "POST",
-                data: {
-                    budget: budget,
-                    spendingAreas: spendingAreas
-                },
-                success: function (response) {
-                    // Update the suggestion div with the generated plan
-                    $("#suggestion").html(response.suggestion);
-    
-                    // Update the Your Possible Plan section
-                    $("#displayBudget").text(budget);
-                    $("#displaySpendingAreas").text(spendingAreas);
-                    $("#possiblePlan").show(); // Show the plan section
-                },
-                error: function () {
-                    // Handle error
-                    alert("Error fetching budget plan. Please try again.");
-                }
-            });
-        });
-    });
+
+            // Your budget range and category-specific suggestions
+            var suggestion = "";
+            if (budget < 100) {
+                suggestion = "Consider saving more and focusing on essential expenses.";
+            } else if (budget < 500) {
+                suggestion = "You can allocate funds for basic needs and a small entertainment budget.";
+            } else {
+                suggestion = "You have a healthy budget! Allocate wisely and consider saving for the future.";
+            }
+
+            // Update the suggestion div with the generated plan
+            $("#suggestion").text(suggestion);
+
+            // Update the Your Possible Plan section
+            $("#displayBudget").text(budget);
+            $("#displaySpendingAreas").text(spendingAreas);
+            $("#possiblePlan").show(); // Show the plan section
+        }
     </script>
-    
 </body>
 </html>
