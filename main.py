@@ -83,6 +83,12 @@ def signup():
 def signin():
     return render_template('signin.html')
 
+@app.route('/signout')
+def signout():
+    global current_user_id
+    current_user_id = ""
+    return redirect("/")
+
 @app.route('/createUser', methods=['POST'])
 def createUser():
     if request.method == 'POST':

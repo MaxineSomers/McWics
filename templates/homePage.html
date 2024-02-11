@@ -23,6 +23,7 @@
             transition: background-color 0.5s ease; 
         }
         .navbar {
+          
             overflow: hidden;
             background-color: rgba(0, 0, 0, 0.3);
         }
@@ -90,19 +91,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/homePage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Track Expenses</a>
+                        <a class="nav-link" href="/Daily_Expense">Track Expenses</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Check Expenses</a>
+                        <a class="nav-link" href="">Check Expenses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="stockChecking">Stocks</a>
                     </li>
                 </ul>
-                <a class="nav-link right" href="#">Link</a>
+                <a id="signOutLink" class="nav-link right" href="/">Sign out</a>
             </div>
         </div>
     </nav>
@@ -156,6 +157,19 @@
 
         // Call the function periodically to change the background color smoothly
         setInterval(changeHeaderColor, 1000); // Change color every 1 seconds
+    </script>
+
+    <script>
+
+const signOutLink = document.getElementById("signOutLink");
+
+// Add a click event listener to the sign-out link
+signOutLink.addEventListener("click", function(event) {
+    // Prevent the default action of the link (i.e., navigating to '/')
+    event.preventDefault();
+    
+    window.location.href = "/signout"
+});
     </script>
 </body>
 
