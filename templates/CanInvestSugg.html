@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Planning</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <style>
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+    
+        .title {
+            text-align: center;
+        }
+    
+        .subtitle {
+            text-align: center;
+        }
+    
+        body {
+            background-color: lightcoral;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+    
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    
+</head>
+<body>
+
+    <h1>Financial Planning</h1>
+    <p>Canada actively promotes savings through programs like TFSA, RRSP, CESG, and HBP. These initiatives offer tax benefits, grants, and long-term financial security. Whether for emergencies, education, or retirement, these savings avenues cater to diverse financial goals, encouraging a culture of financial responsibility and stability.</p>
+
+    <div class="form-container">
+        <form id="amountForm">
+            <label for="amount">Enter the amount you want to save and invest:</label>
+            <input type="number" id="amount" required>
+            <button type="button" onclick="suggestInvestments()">Submit</button>
+        </form>
+    </div>
+
+    <div id="result"></div>
+
+    <script>
+        function suggestInvestments() {
+            var amount = $("#amount").val();
+            var result = "";
+
+            if (amount < 5000) {
+                result = "TFSA: Ideal for emergency funds and short-term savings.<br>GICs and Savings Accounts: Low-risk options for capital preservation.";
+            } else if (amount >= 5000 && amount <= 20000) {
+                result = "TFSA: Continues to be suitable for various savings goals.<br>RESP: Start saving for children's education, with CESG benefits.<br>Employer-Sponsored Retirement Plans: Begin participating in workplace plans for retirement savings.";
+            } else if (amount > 20000 && amount <= 50000) {
+                result = "TFSA: Continue using for flexible savings and potential investment growth.<br>RRSP: Start contributing to take advantage of tax benefits and plan for long-term retirement.<br>RESP: Increase contributions for education savings.";
+            } else {
+                result = "TFSA: Maximize contributions for tax-free growth.<br>RRSP: Contribute to maximize tax benefits and grow retirement savings.<br>RESP: Maximize contributions for education savings, with continued CESG benefits.<br>Investment Opportunities: Consider more diverse investment options for potential higher returns.";
+            }
+
+            $("#result").html(result);
+        }
+    </script>
+
+</body>
+</html>

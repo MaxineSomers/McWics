@@ -11,10 +11,22 @@
         .form-container {
           max-width: 500px;
           margin: 50px auto;
+          
         }
 
         .title {
+           
             text-align: center;
+            /*background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet); /* Colorful gradient */
+            /*-webkit-background-clip: text; /* Apply gradient as text color */
+            /*color: transparent; /* Set text color to transparent to show the gradient */
+            font-size: 48px; /* Set font size */
+            font-weight: bold; /* Set font weight */
+            margin-bottom: 20px; /* Add margin to separate from subtitle */
+            text-align: center;
+            font-weight: bold; /* Make the font bold */
+            font-size: 32px; /* Set the font size to 32 pixels */
+            animation: shimmer 2s infinite; /* Apply shimmer animation */
         }
 
         .subtitle {
@@ -45,8 +57,9 @@
 
     <style>
         body {
-            background-color: lightblue; /* Change the background color to light blue */
+            /*background-color: lightblue; Change the background color to light blue*/
             font-family: 'Courier New', Courier, monospace;
+            background-color: black;
         }
         form {
             margin-bottom: 20px;
@@ -69,12 +82,53 @@
             height: 200px; /* Adjust the height as needed */
             margin-top: 20px;
         }
+        .navbar {
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Right-aligned link */
+            .navbar a.right {
+            float: right;
+}
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        label {
+            display: block;
+        }
+
+        
+
+
     </style>
 </head>
 <body>
-    <h1>Stock Checker</h1>
+    <h1>Stock Checker</h1> 
     <p class="subtitle">"Win Big Time!"</p>
     <hr>
+
+    <div class="navbar">
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#">Link</a>
+        <a href="#" class="right">Link</a>
+      </div>
+
+
+
     <form id="stockForm">
         <label for="symbol">Enter Stock Symbol:</label>
         <input type="text" id="symbol" name="symbol" placeholder="e.g., AAPL">
@@ -82,6 +136,8 @@
     </form>
     <div id="result"></div>
     <canvas id="chart"></canvas>
+
+    
 
 
 
