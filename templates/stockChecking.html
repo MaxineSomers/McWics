@@ -125,10 +125,10 @@
     <hr>
 
     <div class="navbar">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#" class="right">Link</a>
+        <a href="Home">Home</a>
+        <a href="Daily_Expense">Track Expenses</a>
+        <a href="expenses">Check Expenses</a>
+        <a href="stockChecking">Stocks</a>
       </div>
 
 
@@ -182,10 +182,10 @@
             var resultDiv = document.getElementById('result');
             resultDiv.innerHTML = `
                 <h2 style="color: white;">${Object.keys(stockData).length} Days Stock Price</h2>
-                <p style="color: white;>Latest Price: $${latestPrice}</p>
-                <p style="color: white; >Today's Price: $${parseFloat(stockData[Object.keys(stockData)[1]]['4. close']).toFixed(2)}</p>
-                <p style="color: white; >Change: $${change.toFixed(2)}</p>
-                <p style="color: white; >Change Percent: ${changePercent}%</p>
+                <p style="color: white;">Latest Price: $${latestPrice}</p>
+                <p style="color: white; ">Today's Price: $${parseFloat(stockData[Object.keys(stockData)[1]]['4. close']).toFixed(2)}</p>
+                <p style="color: white; ">Change: $${change.toFixed(2)}</p>
+                <p style="color: white; ">Change Percent: ${changePercent}%</p>
             `;
         }
 

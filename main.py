@@ -75,6 +75,7 @@ def expenses():
     expenses = Expense.query.all()
     return render_template('expenses.html', expenses=expenses)
 
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html') 
@@ -82,6 +83,12 @@ def signup():
 @app.route('/signin')
 def signin():
     return render_template('signin.html')
+
+@app.route('/signout')
+def signout():
+    global current_user_id
+    current_user_id = ""
+    return redirect("/")
 
 @app.route('/createUser', methods=['POST'])
 def createUser():
@@ -172,13 +179,29 @@ def delete(id):
 @app.route('/updateexpense/<int:id>')
 def update(id):
     expense = Expense.query.filter_by(id=id).first()
-    db.session.delete(expense)
-    db.session.commit()
-    return render_template("updateexpense.html")
+    return render_template("updateexpense.html", expense=expense)
 
 @app.route('/stockChecking')
 def stock():
     return render_template("stockChecking.html")
+
+# @app.route('/edit', methods={'POST'})
+# def edit():
+#     id = request.form['id']
+#     date = request.form['date']
+#     amount = request.form['amount']
+#     expensename = request.form['expensename']
+#     category = request.form['category']
+#
+#     expense = Expense.query.filter_by(id=id).first()
+#     expense.date = date
+#     expense.amount = amount
+#     expense.expensename = expensename
+#     expense.category = category
+#
+#     db.session.commit()
+#     return redirect('/expenses')
+
 
 
 if __name__ == '__main__':
