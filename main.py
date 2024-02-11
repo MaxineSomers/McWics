@@ -67,7 +67,7 @@ def addexpense(): #get all the data from the add form
     db.session.add(expense)
     db.session.commit() #changes are committed to db
 
-    return redirect("/")
+    return redirect("/expenses")
 
 @app.route('/expenses')
 #get all expenses fr    om the database
