@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask UI Example</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .subtitle {
+        text-align: center;
+    }
+
+  </style>
+
+</head>
+<body>
+
+
+<div class="container">
+  <h1 class="title"> Expense Tracking App</h1>
+  <p class="subtitle">Update expenses!</p>
+</div>
+
+
+<form action="/addexpense" method="POST">
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="date">Date</label>
+      <input class ="form-control" type="date" name="date" id="date">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="">Expense Name</label>
+      <input class ="form-control" type="text" name="expensename" id="expensename">
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="">Amount</label>
+      <input class ="form-control" type="text" name="amount" id="amount">
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-12">
+      <label for="">Category</label>
+      <select class ="form-control" name="category" id="category">
+
+        <option value="other">Other</option>
+        <option value="rent">Rent</option>
+        <option value="entertainment">Entertainment</option>
+
+      </select>
+    </div>
+
+  </div>
+
+
+  <div class="col-sm-12">
+    <input class="btn btn-primary" type="submit" value="confirm edits" id="">
+  </div>
+</form>
+
+</body>
+</html>
