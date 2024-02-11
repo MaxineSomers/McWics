@@ -47,7 +47,7 @@ def isUserInDatabase():
     users = User.query.all()
 
     for user in users:
-        if user.userId == current_user_id:
+        if user.id == current_user_id:
             return True
         
     return False
@@ -104,18 +104,10 @@ def createUser():
 @app.route('/signinUser', methods=['POST'])
 def signinUser():
     if request.method == 'POST':
-        name = request.form['name']
         email = request.form['email']
         password = request.form['password']
 
-        # Create a new instance of the User class
-        new_user = User(name=name,id = str(uuid.uuid4()), email=email, password=password)
-        global current_user_id
-
-        current_user_id = new_user.id
-
-        db.session.add(new_user)
-        db.session.commit() 
+        
 
     return redirect("/")
 
