@@ -127,6 +127,10 @@ def bp():
 def rb():
     return render_template('RemindBill.html') 
 
+@app.route('/CanInvestSugg')
+def InS():
+    return render_template('CanInvestSugg.html')
+
 @app.route('/users')
 def users():
     users = User.query.all()
