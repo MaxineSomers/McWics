@@ -81,7 +81,7 @@ def signup():
 
 @app.route('/signin')
 def signin():
-    return render_template('signin.html')
+    return render_template('signin.html', incorrectLogin=False)
 
 @app.route('/createUser', methods=['POST'])
 def createUser():
@@ -107,9 +107,16 @@ def signinUser():
         email = request.form['email']
         password = request.form['password']
 
+        users = User.query.all()
         
+        for user in users:
+            if user.email == email and user.password == password:
+                return redirect("/")
 
-    return redirect("/")
+
+    
+
+    return render_template('signin.html', incorrectLogin = True)
 
 
 @app.route('/BudgetPlan')
