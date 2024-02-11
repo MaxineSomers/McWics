@@ -79,6 +79,7 @@
                 <label for="">Category</label>
                 <select class ="form-control" name="category" id="category">
 
+                    <option value="other">Other</option>
                     <option value="food">Food</option>
                     <option value="transportation">Transportation</option>
                     <option value="utilities">Utilities</option>
@@ -91,9 +92,17 @@
 
 
 
+
+
+        <div class="col-sm-12">
             <button class=“h-10” type="submit" value = "add" id =""  onclick="addExpense()" style="margin-top: 10px;">Add Expense</button>
+        </div>
+
+        <div class="col-sm-12">
             <button type="button" onclick="drawPieChart()" style="margin-top: 10px;">Draw Pie Chart</button>
-            
+        </div>
+
+
     </form>
 
     <h1>Daily Expense Distribution</h1>

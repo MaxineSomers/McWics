@@ -184,6 +184,24 @@ def update(id):
 def stock():
     return render_template("stockChecking.html")
 
+# @app.route('/edit', methods={'POST'})
+# def edit():
+#     id = request.form['id']
+#     date = request.form['date']
+#     amount = request.form['amount']
+#     expensename = request.form['expensename']
+#     category = request.form['category']
+#
+#     expense = Expense.query.filter_by(id=id).first()
+#     expense.date = date
+#     expense.amount = amount
+#     expense.expensename = expensename
+#     expense.category = category
+#
+#     db.session.commit()
+#     return redirect('/expenses')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
