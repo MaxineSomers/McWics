@@ -75,6 +75,7 @@ def expenses():
     expenses = Expense.query.all()
     return render_template('expenses.html', expenses=expenses)
 
+
 @app.route('/signup')
 def signup():
     return render_template('signup.html') 
