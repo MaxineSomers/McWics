@@ -76,29 +76,6 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/homePage">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Daily_Expense">Track Expenses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="expenses">Check Expenses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="stockChecking">Stocks</a>
-                </li>
-            </ul>
-            <a id="signOutLink" class="nav-link" href="/">Sign out</a>
-        </div>
-    </div>
-</nav>
-
-
 
 
 
@@ -108,7 +85,7 @@
     <!-- Form for inputting daily expenses -->
 
     <div class="navbar">
-        <a href="Home">Home</a>
+        <a href="/">Home</a>
         <a href="Daily_Expense">Track Expenses</a>
         <a href="expenses">Check Expenses</a>
         <a href="stockChecking">Stocks</a>
@@ -160,74 +137,84 @@
 
 
 
+
+
+
         <div class="col-sm-12">
             <button class=“h-10” type="submit" value = "add" id =""  onclick="addExpense()" style="margin-top: 10px;">Add Expense</button>
         </div>
 
-        <div class="col-sm-12">
-            <button type="button" onclick="drawPieChart()" style="margin-top: 10px;">Draw Pie Chart</button>
-        </div>
 
     </form>
 
+    <div class="col-sm-12">
+        <button class=“button”  oneclick="addExpenseToGraph()" style="margin-top: 10px;"> Add Expense for Graphing</button>
+    </div>
 
-<!--    <h1>Daily Expense Distribution</h1>-->
-<!--    <table id="expense-table">-->
-<!--        <thead>-->
-<!--            <tr>-->
-<!--                <th>Amount</th>-->
-<!--                <th>Category</th>-->
-<!--            </tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--            &lt;!&ndash; Data will be populated dynamically &ndash;&gt;-->
-<!--        </tbody>-->
-<!--    </table>-->
+    
+    <div class="col-sm-12">
+        <button type="button" onclick="drawPieChart()" style="margin-top: 10px;">Draw Pie Chart</button>
+    </div>
 
-<!--    &lt;!&ndash; Pie chart canvas &ndash;&gt;-->
-<!--    <canvas id="pie-chart" width="400" height="400"></canvas>-->
+    </form>
 
-<!--    <script>-->
-<!--        var expenseData = [];-->
+    <h1>Daily Expense Distribution</h1>
+    <table id="expense-table">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be populated dynamically -->
+        </tbody>
+    </table>
+    <!-- Pie chart canvas -->
+    <canvas id="pie-chart" width="400" height="400"></canvas>
 
-<!--        function addExpense() {-->
-<!--            var amount = parseFloat(document.getElementById("amount").value);-->
-<!--            var category = document.getElementById("category").value;-->
-<!--            expenseData.push({ amount: amount, category: category });-->
+   <script>
+    var expenseData = [];
 
-<!--            var table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];-->
-<!--            var newRow = table.insertRow();-->
-<!--            var amountCell = newRow.insertCell(0);-->
-<!--            var categoryCell = newRow.insertCell(1);-->
-<!--            amountCell.innerHTML = amount;-->
-<!--            categoryCell.innerHTML = category;-->
-<!--        }-->
+    function addExpenseToGraph() {
+        var amount = parseFloat(document.getElementById("amount").value);
+        var category = document.getElementById("category").value;
+        expenseData.push({ amount: amount, category: category });
 
-<!--        function drawPieChart() {-->
-<!--            var amounts = [];-->
-<!--            var categories = [];-->
-<!--            for (var i = 0; i < expenseData.length; i++) {-->
-<!--                amounts.push(expenseData[i].amount);-->
-<!--                categories.push(expenseData[i].category);-->
-<!--            }-->
+        var table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow();
+        var amountCell = newRow.insertCell(0);
+        var categoryCell = newRow.insertCell(1);
+        amountCell.innerHTML = amount;
+        categoryCell.innerHTML = category;
+    }
 
-<!--            var ctx = document.getElementById('pie-chart').getContext('2d');-->
-<!--            var myPieChart = new Chart(ctx, {-->
-<!--                type: 'pie',-->
-<!--                data: {-->
-<!--                    labels: categories,-->
-<!--                    datasets: [{-->
-<!--                        data: amounts,-->
-<!--                        backgroundColor: [-->
-<!--                            'rgba(255, 99, 132, 0.6)',-->
-<!--                            'rgba(54, 162, 235, 0.6)',-->
-<!--                            'rgba(255, 206, 86, 0.6)',-->
-<!--                            'rgba(75, 192, 192, 0.6)'-->
-<!--                        ],-->
-<!--                    }]-->
-<!--                }-->
-<!--            });-->
-<!--        }-->
-<!--    </script>-->
+    function drawPieChart() {
+        var amounts = [];
+        var categories = [];
+        for (var i = 0; i < expenseData.length; i++) {
+            amounts.push(expenseData[i].amount);
+            categories.push(expenseData[i].category);
+        }
+
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: categories,
+                datasets: [{
+                    data: amounts,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                }]
+            }
+        });
+    }
+</script>
+
 </body>
 </html>

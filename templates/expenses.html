@@ -94,9 +94,36 @@
 
 <!-- Pie chart canvas -->
 <div class="container">
+    <canvas id="pie-chart" width="400" height="400"></canvas>
     <button type="button" onclick="drawPieChart()" style="margin-top: 10px;">Draw Pie Chart</button>
 </div>
 
+<script>
+    function drawPieChart() {
+        // Sample data (replace this with your actual data)
+        var data = {
+            labels: ['Food', 'Transportation', 'Utilities', 'Entertainment'],
+            datasets: [{
+                data: [300, 200, 150, 100], // Sample amounts
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)'
+                ]
+            }]
+        };
+
+        // Get the canvas element
+        var ctx = document.getElementById('pie-chart').getContext('2d');
+
+        // Draw the pie chart
+        new Chart(ctx, {
+            type: 'pie',
+            data: data
+        });
+    }
+</script>
 
 </body>
 </html>
