@@ -154,5 +154,24 @@ def min_page():
 def homePage():
     return render_template("homePage.html")
 
+@app.route('/delete/<int:id>')
+def delete(id):
+    expense = Expense.query.filter_by(id=id).first()
+    db.session.delete(expense)
+    db.session.commit()
+    return redirect('/expenses')
+
+@app.route('/update/<int:id>')
+def update(id):
+    expense = Expense.query.filter_by(id=id).first()
+    db.session.delete(expense)
+    db.session.commit()
+    return render_template("updateexpense.html", expense=expense)
+
+@app.route('/stockChecking')
+def stock():
+    return render_template("stockChecking.html")
+
+
 if __name__ == '__main__':
     app.run(debug=True)
