@@ -44,24 +44,25 @@
 <body>
 
 <div class="container">
-  <h1 class="title">Daily Expense Tracker</h1>
+  <h1 class="title">Update your expenses</h1>
   <p class="subtitle">Update your expenses!</p>
   <!-- Form for inputting daily expenses -->
 
 </div>
 
-<form action="/addexpense" method="POST">
+<form action="/edit" method="POST">
+  <input type="hidden" value="{{expense.id}}" name="" id="id">
   <div class="form-group">
     <div class="col-sm-12">
       <label for="date">Date</label>
-      <input class ="form-control" type="date" name="date" id="date">
+      <input class ="form-control" value="{{expense.date}}" type="date" name="date" id="date">
     </div>
   </div>
 
   <div class="form-group">
     <div class="col-sm-12">
       <label for="">Expense Name</label>
-      <input class ="form-control" type="text" name="expensename" id="expensename">
+      <input class ="form-control" value="{{expense.expensename}}" type="text" name="expensename" id="expensename">
     </div>
 
   </div>
@@ -69,7 +70,7 @@
   <div class="form-group">
     <div class="col-sm-12">
       <label for="">Amount</label>
-      <input class ="form-control" type="text" name="amount" id="amount">
+      <input class ="form-control" value="{{expense.amount}}" type="text" name="amount" id="amount">
     </div>
 
   </div>
@@ -79,6 +80,7 @@
       <label for="">Category</label>
       <select class ="form-control" name="category" id="category">
 
+        <option value="other" selected>Other</option>
         <option value="food">Food</option>
         <option value="transportation">Transportation</option>
         <option value="utilities">Utilities</option>
