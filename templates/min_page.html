@@ -12,6 +12,12 @@
           margin: 50px auto;
         }
 
+        .navbar-nav .nav-link {
+            white-space: nowrap; /* Prevents text from wrapping */
+            font-size: 20px;
+            margin-right: 20px;
+        }
+
         .title {
             text-align: center;
         }
@@ -58,10 +64,11 @@
                     <a class="nav-link" href="stockChecking">Stocks</a>
                 </li>
             </ul>
-            <a id="signOutLink" class="nav-link right" href="/">Sign out</a>
+            <a id="signOutLink" class="nav-link" href="/">Sign out</a>
         </div>
     </div>
 </nav>
+
 
 
 
@@ -128,63 +135,63 @@
     </form>
 
 
-    <h1>Daily Expense Distribution</h1>
-    <table id="expense-table">
-        <thead>
-            <tr>
-                <th>Amount</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data will be populated dynamically -->
-        </tbody>
-    </table>
+<!--    <h1>Daily Expense Distribution</h1>-->
+<!--    <table id="expense-table">-->
+<!--        <thead>-->
+<!--            <tr>-->
+<!--                <th>Amount</th>-->
+<!--                <th>Category</th>-->
+<!--            </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--            &lt;!&ndash; Data will be populated dynamically &ndash;&gt;-->
+<!--        </tbody>-->
+<!--    </table>-->
 
-    <!-- Pie chart canvas -->
-    <canvas id="pie-chart" width="400" height="400"></canvas>
+<!--    &lt;!&ndash; Pie chart canvas &ndash;&gt;-->
+<!--    <canvas id="pie-chart" width="400" height="400"></canvas>-->
 
-    <script>
-        var expenseData = [];
+<!--    <script>-->
+<!--        var expenseData = [];-->
 
-        function addExpense() {
-            var amount = parseFloat(document.getElementById("amount").value);
-            var category = document.getElementById("category").value;
-            expenseData.push({ amount: amount, category: category });
+<!--        function addExpense() {-->
+<!--            var amount = parseFloat(document.getElementById("amount").value);-->
+<!--            var category = document.getElementById("category").value;-->
+<!--            expenseData.push({ amount: amount, category: category });-->
 
-            var table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow();
-            var amountCell = newRow.insertCell(0);
-            var categoryCell = newRow.insertCell(1);
-            amountCell.innerHTML = amount;
-            categoryCell.innerHTML = category;
-        }
+<!--            var table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];-->
+<!--            var newRow = table.insertRow();-->
+<!--            var amountCell = newRow.insertCell(0);-->
+<!--            var categoryCell = newRow.insertCell(1);-->
+<!--            amountCell.innerHTML = amount;-->
+<!--            categoryCell.innerHTML = category;-->
+<!--        }-->
 
-        function drawPieChart() {
-            var amounts = [];
-            var categories = [];
-            for (var i = 0; i < expenseData.length; i++) {
-                amounts.push(expenseData[i].amount);
-                categories.push(expenseData[i].category);
-            }
+<!--        function drawPieChart() {-->
+<!--            var amounts = [];-->
+<!--            var categories = [];-->
+<!--            for (var i = 0; i < expenseData.length; i++) {-->
+<!--                amounts.push(expenseData[i].amount);-->
+<!--                categories.push(expenseData[i].category);-->
+<!--            }-->
 
-            var ctx = document.getElementById('pie-chart').getContext('2d');
-            var myPieChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: categories,
-                    datasets: [{
-                        data: amounts,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)',
-                            'rgba(54, 162, 235, 0.6)',
-                            'rgba(255, 206, 86, 0.6)',
-                            'rgba(75, 192, 192, 0.6)'
-                        ],
-                    }]
-                }
-            });
-        }
-    </script>
+<!--            var ctx = document.getElementById('pie-chart').getContext('2d');-->
+<!--            var myPieChart = new Chart(ctx, {-->
+<!--                type: 'pie',-->
+<!--                data: {-->
+<!--                    labels: categories,-->
+<!--                    datasets: [{-->
+<!--                        data: amounts,-->
+<!--                        backgroundColor: [-->
+<!--                            'rgba(255, 99, 132, 0.6)',-->
+<!--                            'rgba(54, 162, 235, 0.6)',-->
+<!--                            'rgba(255, 206, 86, 0.6)',-->
+<!--                            'rgba(75, 192, 192, 0.6)'-->
+<!--                        ],-->
+<!--                    }]-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    </script>-->
 </body>
 </html>
