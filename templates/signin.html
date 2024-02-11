@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Information Input</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom CSS */
+    .form-container {
+      max-width: 500px;
+      margin: 50px auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card form-container">
+        <div class="card-header">
+          <h3 class="card-title text-center">Sign up</h3>
+        </div>
+        <div class="card-body">
+          <form id="user-info-form" action="/createUser" method="POST">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" value ="add" id="" class="btn btn-primary btn-block">Submit</button>
+            
+          </form>
+          <div class="text-center mt-3">
+            <p>Already have an account? <a href="/signin">Sign in</a></p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and dependencies (optional, if you need JS functionality) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- <script>
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get the form element
+    const form = document.getElementById("user-info-form");
+
+    // Add an event listener for form submission
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      // Get the values entered by the user
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      
+      
+
+      window.location.href = "/submit";
+    });
+  });
+
+</script> -->
+</body>
+</html>
