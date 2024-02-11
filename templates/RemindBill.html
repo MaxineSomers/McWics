@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Remaining Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <h1>Days Remaining Calculator</h1>
+
+    <form id="dateForm">
+        <label for="dueDate">Enter Due Date:</label>
+        <input type="date" id="dueDate" required>
+        <button type="button" onclick="calculateDaysRemaining()">Calculate</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateDaysRemaining() {
+            var dueDate = $("#dueDate").val();
+            var today = new Date();
+            var dueDateObj = new Date(dueDate);
+            var daysRemaining = Math.ceil((dueDateObj - today) / (1000 * 60 * 60 * 24));
+
+            $("#result").html("Days Remaining: " + daysRemaining);
+        }
+    </script>
+
+</body>
+</html>

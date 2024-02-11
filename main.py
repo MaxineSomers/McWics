@@ -115,6 +115,11 @@ def signinUser():
 @app.route('/BudgetPlan')
 def bp():
     return render_template('BudgetPlan.html') 
+
+@app.route('/RemindBill')
+def rb():
+    return render_template('RemindBill.html') 
+
 @app.route('/users')
 def users():
     users = User.query.all()
