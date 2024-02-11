@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Checker</title>
 
- 
+
     <style>
         .form-container {
           max-width: 500px;
@@ -83,7 +83,7 @@
     <div id="result"></div>
     <canvas id="chart"></canvas>
 
-  
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -96,7 +96,7 @@
         function fetchStockData(symbol) {
             var apiKey = 'YOUR_API_KEY'; // Replace with your actual API key from Alpha Vantage
             var apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
-            
+
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {

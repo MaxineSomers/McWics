@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flask UI Example</title>
+  <title>Daily Expense</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     .form-container {
@@ -20,16 +21,34 @@
     }
 
   </style>
-
+  <style>
+    body {
+        background-color: lightblue; /* Change the background color to light blue */
+        font-family: 'Courier New', Courier, monospace;
+    }
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+  </style>
 </head>
 <body>
 
-
 <div class="container">
-  <h1 class="title"> Expense Tracking App</h1>
-  <p class="subtitle">Update expenses!</p>
-</div>
+  <h1 class="title">Daily Expense Tracker</h1>
+  <p class="subtitle">Add expenses!</p>
+  <!-- Form for inputting daily expenses -->
 
+</div>
 
 <form action="/addexpense" method="POST">
   <div class="form-group">
@@ -60,20 +79,80 @@
       <label for="">Category</label>
       <select class ="form-control" name="category" id="category">
 
-        <option value="other">Other</option>
-        <option value="rent">Rent</option>
+        <option value="food">Food</option>
+        <option value="transportation">Transportation</option>
+        <option value="utilities">Utilities</option>
         <option value="entertainment">Entertainment</option>
+        <option value="rent">Rent</option>
 
       </select>
     </div>
-
   </div>
 
 
-  <div class="col-sm-12">
-    <input class="btn btn-primary" type="submit" value="confirm edits" id="">
-  </div>
+
+  <button class=“h-10” type="submit" value = "add" id =""  onclick="addExpense()" style="margin-top: 10px;">Add Expense</button>
+  <button type="button" onclick="drawPieChart()" style="margin-top: 10px;">Draw Pie Chart</button>
+
 </form>
 
+<h1>Daily Expense Distribution</h1>
+<table id="expense-table">
+  <thead>
+  <tr>
+    <th>Amount</th>
+    <th>Category</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Data will be populated dynamically -->
+  </tbody>
+</table>
+
+<!-- Pie chart canvas -->
+<canvas id="pie-chart" width="400" height="400"></canvas>
+
+<script>
+  var expenseData = [];
+
+  function addExpense() {
+      var amount = parseFloat(document.getElementById("amount").value);
+      var category = document.getElementById("category").value;
+      expenseData.push({ amount: amount, category: category });
+
+      var table = document.getElementById("expense-table").getElementsByTagName('tbody')[0];
+      var newRow = table.insertRow();
+      var amountCell = newRow.insertCell(0);
+      var categoryCell = newRow.insertCell(1);
+      amountCell.innerHTML = amount;
+      categoryCell.innerHTML = category;
+  }
+
+  function drawPieChart() {
+      var amounts = [];
+      var categories = [];
+      for (var i = 0; i < expenseData.length; i++) {
+          amounts.push(expenseData[i].amount);
+          categories.push(expenseData[i].category);
+      }
+
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      var myPieChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: categories,
+              datasets: [{
+                  data: amounts,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.6)',
+                      'rgba(54, 162, 235, 0.6)',
+                      'rgba(255, 206, 86, 0.6)',
+                      'rgba(75, 192, 192, 0.6)'
+                  ],
+              }]
+          }
+      });
+  }
+</script>
 </body>
 </html>
