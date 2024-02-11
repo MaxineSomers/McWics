@@ -4,7 +4,7 @@
 <head>
     <title>Financial Management Tool</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet"> <!-- Use Sixtyfour font from Google Fonts -->    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -26,6 +26,19 @@
           
             overflow: hidden;
             background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .title {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 100px;
+            /*font-size-weight: bold;*/
+            font-family: 'Sixtyfour', sans-serif;
+        }
+
+        .subtitle {
+            text-align: center;
         }
 
         .navbar a {
@@ -82,8 +95,19 @@
     <div class="header" id="header">
         <img src="https://assets-prd.ignimgs.com/2022/09/08/jojo-blogroll-1662678855765.jpg" alt="Your Image"> <!-- Insert your image here -->
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwWUgehdZQOwe68k4Yp_u8-VQ2xPaGPOiw3w&usqp=CAU" alt="img2">
-        <h1>Master Your Money Wisely</h1>
-        <p>Your Ultimate Financial Management Tool</p>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <h1 class="display-4 title">MoneyMinder</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2>Master Your Money Wisely</h2>
+                    <p>Your Ultimate Financial Management Tool</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
