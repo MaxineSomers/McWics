@@ -178,9 +178,7 @@ def delete(id):
 @app.route('/updateexpense/<int:id>')
 def update(id):
     expense = Expense.query.filter_by(id=id).first()
-    db.session.delete(expense)
-    db.session.commit()
-    return render_template("updateexpense.html")
+    return render_template("updateexpense.html", expense=expense)
 
 @app.route('/stockChecking')
 def stock():
