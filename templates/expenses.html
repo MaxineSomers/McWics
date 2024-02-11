@@ -50,6 +50,11 @@
             background-color: #ddd;
             color: black;
         }
+
+        /* pie {
+            max-width: 35px;
+            height: 35px;
+        } */
     </style>
 </head>
 
@@ -61,7 +66,7 @@
 </div>
 
 <div class="navbar">
-    <a href="Home">Home</a>
+    <a href="/">Home</a>
     <a href="Daily_Expense">Track Expenses</a>
     <a href="expenses">Check Expenses</a>
     <a href="stockChecking">Stocks</a>
@@ -101,8 +106,8 @@
 
 <!-- Pie chart canvas -->
 <div class="container">
-    <canvas id="pie-chart" width="400" height="400"></canvas>
-    <button type="button" onclick="drawPieChart()" style="margin-top: 10px;">Draw Pie Chart</button>
+    <canvas id="pie-chart" width="50" height="50"></canvas>
+    <button type="button" onclick="drawPieChart()" style="margin-top: -10px;">Draw Pie Chart</button>
 </div>
 
 <script>
