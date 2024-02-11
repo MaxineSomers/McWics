@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Checker</title>
 
- 
+
     <style>
         .form-container {
           max-width: 500px;
@@ -69,23 +69,12 @@
             height: 200px; /* Adjust the height as needed */
             margin-top: 20px;
         }
-        
-
-        
     </style>
 </head>
 <body>
     <h1>Stock Checker</h1>
     <p class="subtitle">"Win Big Time!"</p>
     <hr>
-
-    <div class="navbar">
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#">Link</a>
-        <a href="#" class="right">Link</a>
-      </div>
-
     <form id="stockForm">
         <label for="symbol">Enter Stock Symbol:</label>
         <input type="text" id="symbol" name="symbol" placeholder="e.g., AAPL">
@@ -94,7 +83,7 @@
     <div id="result"></div>
     <canvas id="chart"></canvas>
 
-  
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -107,7 +96,7 @@
         function fetchStockData(symbol) {
             var apiKey = 'YOUR_API_KEY'; // Replace with your actual API key from Alpha Vantage
             var apiUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${apiKey}`;
-            
+
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
